@@ -7,6 +7,7 @@ use App\Http\Resources\MotorResource;
 use App\Http\Resources\MotorDetailResource;
 use App\Models\Motor;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class MotorController extends Controller
@@ -51,6 +52,16 @@ class MotorController extends Controller
         return new MotorDetailResource($post->loadMissing('writer:id,username'));
 
     }
+
+    public function delete($id){
+        $post = Motor::findOrFail($id);
+        $post->delete();
+
+        return response()->json([
+            'message' => "data successfully deleted"
+        ]);
+    }
+
 
 
 

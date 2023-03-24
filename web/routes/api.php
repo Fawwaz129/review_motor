@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\MotorController;
 use App\Http\Controllers\AuthenticationController;
 
@@ -19,12 +20,14 @@ use App\Http\Controllers\AuthenticationController;
 
 Route::get('/posts2/{id}', [MotorController::class, 'show2']);
 Route::post('/login', [AuthenticationController::class, 'login']);
+Route::post('/rating', [RatingController::class, 'store']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/posts', [MotorController::class, 'index']);
     Route::get('/posts/{id}', [MotorController::class, 'show']);
     Route::post('/posts', [MotorController::class, 'store']);
     Route::patch('/posts/{id}', [MotorController::class, 'update'])->middleware(['post.owner']);
+    Route::delete('/posts/{id}', [MotorController::class, 'delete'])->middleware(['post.owner']);
 
     Route::get('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/me', [AuthenticationController::class, 'me']);
