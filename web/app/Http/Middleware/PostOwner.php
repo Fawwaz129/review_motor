@@ -25,7 +25,7 @@ class PostOwner
 
         if ($post -> author != $currentUser->id) {
             return response()->json([
-                'message' => 'data not found'
+                'message' => 'Kowe sopo cok'
             ], 404);
         }
 

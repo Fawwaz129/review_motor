@@ -46,7 +46,9 @@ class MotorController extends Controller
         ]);
         $post = Motor::findOrFail($id);
         $post->update($request->all());
-        return response()->json('sudah dapat digunakan');
+        //return response()->json('sudah dapat digunakan');
+
+        return new MotorDetailResource($post->loadMissing('writer:id,username'));
 
     }
 
