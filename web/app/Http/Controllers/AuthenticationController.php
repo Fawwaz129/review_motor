@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
@@ -35,5 +36,11 @@ class AuthenticationController extends Controller
         return response()->json([
             'message' => 'anda sudah logout'
         ]);
+    }
+
+    
+    public function me(){
+        $user = Auth::user();
+        return response()->json($user);
     }
 }
