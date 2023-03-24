@@ -23,3 +23,4 @@ Route::get('/posts', [MotorController::class, 'index'])->middleware(['auth:sanct
 Route::get('/posts/{id}', [MotorController::class, 'show'])->middleware(['auth:sanctum']);
 Route::get('/posts2/{id}', [MotorController::class, 'show2']);
 Route::post('/login', [AuthenticationController::class, 'login']);
+Route::get('/logout', [AuthenticationController::class, 'logout'])->middleware('auth:sanctum');
