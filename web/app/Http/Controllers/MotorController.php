@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\MotorResource;
 use App\Http\Resources\MotorDetailResource;
 use App\Models\Motor;
+use Illuminate\Support\Facades\Auth;
+
 
 class MotorController extends Controller
 {
@@ -22,5 +24,21 @@ class MotorController extends Controller
         $post = Motor::findOrFail($id);
         return new MotorDetailResource($post);
     }
+
+    
+    public function store(Request $request){
+        $request -> validate([
+            'nama_motor' => 'required|max:255',
+            'tentang_motor' => 'required',
+        ]);
+
+        // return response()->json('sudah dapat digunakan');
+        $request['author'] = Auth::user()->id;
+
+        $post = Motor::create($request->all());
+        return new MotorDetailResource($post->loadMissing('writer:id,username'));
+
+    }
+
 
 }
