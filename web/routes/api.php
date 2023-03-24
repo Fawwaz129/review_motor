@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/posts', [MotorController::class, 'index']);
     Route::get('/posts/{id}', [MotorController::class, 'show']);
     Route::post('/posts', [MotorController::class, 'store']);
-    Route::patch('/posts/{id}', [MotorController::class, 'update']);
+    Route::patch('/posts/{id}', [MotorController::class, 'update'])->middleware(['post.owner']);
 
     Route::get('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/me', [AuthenticationController::class, 'me']);
