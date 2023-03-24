@@ -9,6 +9,7 @@ class MotorController extends Controller
 {
     public function index(){
         $posts = Motor::all();
-        return response()->json($posts);
+        return response()->json(['data' => $posts]);
+        
     }
 }
