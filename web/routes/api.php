@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/posts', [MotorController::class, 'index']);
 Route::get('/posts/{id}', [MotorController::class, 'show']);
+Route::get('/posts2/{id}', [MotorController::class, 'show2']);

@@ -15,7 +15,12 @@ class MotorController extends Controller
         return MotorResource::collection($posts);
     }
     public function show($id){
+        $post = Motor::with('writer:id,username')->findOrFail($id);
+        return new MotorDetailResource($post);
+    }
+    public function show2($id){
         $post = Motor::findOrFail($id);
         return new MotorDetailResource($post);
     }
+
 }
