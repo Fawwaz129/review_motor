@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class MotorResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,8 @@ class PostResource extends JsonResource
         //return parent::toArray($request);
         return [
             'id' => $this->id,
-            'nama_motor' => $this->title,
-            'tentang_motor' => $this->news_content,
+            'nama_motor' => $this->nama_motor,
+            'tentang_motor' => $this->tentang_motor,
             // 'created_at' => $this->created_at,
             'created_at' => date_format($this->created_at, "Y/m/d H:i:s"),
         ];
