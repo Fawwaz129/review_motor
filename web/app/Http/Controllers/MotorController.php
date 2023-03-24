@@ -39,6 +39,17 @@ class MotorController extends Controller
         return new MotorDetailResource($post->loadMissing('writer:id,username'));
 
     }
+    public function update(Request $request, $id){
+        $request -> validate([
+            'nama_motor' => 'required|max:255',
+            'tentang_motor' => 'required',
+        ]);
+        $post = Motor::findOrFail($id);
+        $post->update($request->all());
+        return response()->json('sudah dapat digunakan');
+
+    }
+
 
 
 }
