@@ -34,7 +34,17 @@ class MotorController extends Controller
             'tentang_motor' => 'required',
         ]);
 
+        $image = null;
+        if ($request -> file) {
+            $fileName = $this->generateRandomString();
+            $extension = $request->file->extension();
+
+            $image = $fileName. '.' .$extension;
+            Storage::putFileAs('image', $request->file, $image);
+        }
+
         // return response()->json('sudah dapat digunakan');
+        $request['image'] = $image;
         $request['author'] = Auth::user()->id;
 
         $post = Motor::create($request->all());
@@ -46,6 +56,18 @@ class MotorController extends Controller
             'nama_motor' => 'required|max:255',
             'tentang_motor' => 'required',
         ]);
+        $image = null;
+        if ($request -> file) {
+            $fileName = $this->generateRandomString();
+            $extension = $request->file->extension();
+
+            $image = $fileName. '.' .$extension;
+            Storage::putFileAs('image', $request->file, $image);
+        }
+
+        // return response()->json('sudah dapat digunakan');
+        $request['image'] = $image;
+
         $post = Motor::findOrFail($id);
         $post->update($request->all());
         //return response()->json('sudah dapat digunakan');
@@ -61,6 +83,15 @@ class MotorController extends Controller
         return response()->json([
             'message' => "data successfully deleted"
         ]);
+    }
+    function generateRandomString($length = 20) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 

@@ -19,6 +19,7 @@ class MotorDetailResource extends JsonResource
 
             'id' => $this->id,
             'nama_motor' => $this->nama_motor,
+            'image' => $this->image,
             'tentang_motor' => $this->tentang_motor,
             'author_id' => $this->author,
             'writer' => $this->whenLoaded('writer'),
