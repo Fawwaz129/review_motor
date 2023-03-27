@@ -31,6 +31,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
 
     Route::post('/rating', [RatingController::class, 'store']);
     Route::patch('/rating/{id}', [RatingController::class, 'update'])->middleware('rating.owner');
+    Route::delete('/rating/{id}', [RatingController::class, 'delete'])->middleware('rating.owner');
 
     Route::get('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/me', [AuthenticationController::class, 'me']);

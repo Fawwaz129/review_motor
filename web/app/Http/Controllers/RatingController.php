@@ -38,4 +38,12 @@ class RatingController extends Controller
 
     }
 
+    public function delete($id){
+        $comment = Rating::findOrFail($id);
+        $comment->delete();
+
+        return new RatingResource($comment->loadMissing(['commentator:id,username']));
+    }
+
+
 }
