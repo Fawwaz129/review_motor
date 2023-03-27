@@ -16,6 +16,7 @@ class Motor extends Model
         'nama_motor',
         'tentang_motor',
         'author',
+        'image',
     ];
 
     public function writer(): BelongsTo
