@@ -15,14 +15,15 @@ class MotorController extends Controller
     public function index(){
         $posts = Motor::all();
         // return response()->json(['data' => $posts]);
-        return MotorResource::collection($posts);
+        //return MotorResource::collection($posts);
+        return MotorDetailResource::collection($posts->loadMissing('writer:id,username', 'comments:id,post_id,user_id,rating_motor'));
     }
     public function show($id){
         $post = Motor::with('writer:id,username')->findOrFail($id);
         return new MotorDetailResource($post);
     }
     public function show2($id){
-        $post = Motor::findOrFail($id);
+        $post = Motor::with('writer:id,username', 'comments:id,post_id,user_id,rating_motor')->findOrFail($id);
         return new MotorDetailResource($post);
     }
 

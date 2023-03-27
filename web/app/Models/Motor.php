@@ -22,4 +22,14 @@ class Motor extends Model
     {
         return $this->belongsTo(User::class, 'author', 'id');
     }
+
+    /**
+     * Get all of the comments for the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Rating::class, 'post_id', 'id');
+    }
 }
