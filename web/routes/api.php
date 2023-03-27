@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::delete('/posts/{id}', [MotorController::class, 'delete'])->middleware(['post.owner']);
 
     Route::post('/rating', [RatingController::class, 'store']);
-    Route::post('/rating/{id}', [RatingController::class, 'update'])->middleware('rating.owner');
+    Route::patch('/rating/{id}', [RatingController::class, 'update'])->middleware('rating.owner');
 
     Route::get('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/me', [AuthenticationController::class, 'me']);

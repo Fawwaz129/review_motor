@@ -27,6 +27,15 @@ class RatingController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([]);
+        $request->validate([
+            'rating_motor' => 'required'
+        ]);
+
+        $comment = Rating::findOrFail($id);
+        $comment->update($request->only('rating_motor'));
+
+        return new RatingResource($comment->loadMissing(['commentator:id,username']));
+
     }
 
 }
