@@ -20,7 +20,7 @@ use App\Http\Controllers\AuthenticationController;
 
 Route::get('/posts2/{id}', [MotorController::class, 'show2']);
 Route::post('/login', [AuthenticationController::class, 'login']);
-Route::post('/rating', [RatingController::class, 'store']);
+
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/posts', [MotorController::class, 'index']);
@@ -28,6 +28,8 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::post('/posts', [MotorController::class, 'store']);
     Route::patch('/posts/{id}', [MotorController::class, 'update'])->middleware(['post.owner']);
     Route::delete('/posts/{id}', [MotorController::class, 'delete'])->middleware(['post.owner']);
+
+    Route::post('/rating', [RatingController::class, 'store']);
 
     Route::get('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/me', [AuthenticationController::class, 'me']);
