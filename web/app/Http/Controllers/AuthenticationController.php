@@ -10,6 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
+    public function register(Request $request){
+        $validateData = $request -> validate([
+            'email' => 'email|required|unique:users',
+            'username' => 'required|max:55',
+            'password' => 'required',
+            'firstname' => 'required|max:55',
+            'lastname' => 'required|max:55',
+        ]);
+        $validateData['password'] = Hash::make($request->password);
+
+        $user = User::create($validateData);
+
+        $accessToken = $user->createToken('authToken')->accessToken;
+
+        return response(['user' => $user, 'access_token'=> $accessToken]);
+
+    }
     public function login(Request $request){
         $request -> validate([
             'email' => 'required|email',

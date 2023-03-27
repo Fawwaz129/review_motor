@@ -20,14 +20,15 @@ use App\Http\Controllers\AuthenticationController;
 
 Route::get('/posts2/{id}', [MotorController::class, 'show2']);
 Route::post('/login', [AuthenticationController::class, 'login']);
+Route::post('/register', [AuthenticationController::class, 'register']);
 
 
 Route::middleware(['auth:sanctum'])->group(function (){
-    Route::get('/posts', [MotorController::class, 'index']);
-    Route::get('/posts/{id}', [MotorController::class, 'show']);
-    Route::post('/posts', [MotorController::class, 'store']);
-    Route::patch('/posts/{id}', [MotorController::class, 'update'])->middleware(['post.owner']);
-    Route::delete('/posts/{id}', [MotorController::class, 'delete'])->middleware(['post.owner']);
+    Route::get('/motor', [MotorController::class, 'index']);
+    Route::get('/motor/{id}', [MotorController::class, 'show']);
+    Route::post('/motor', [MotorController::class, 'store']);
+    Route::patch('/motor/{id}', [MotorController::class, 'update'])->middleware(['post.owner']);
+    Route::delete('/motor/{id}', [MotorController::class, 'delete'])->middleware(['post.owner']);
 
     Route::post('/rating', [RatingController::class, 'store']);
     Route::patch('/rating/{id}', [RatingController::class, 'update'])->middleware('rating.owner');
