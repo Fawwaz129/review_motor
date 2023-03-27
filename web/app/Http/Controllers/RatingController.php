@@ -24,5 +24,9 @@ class RatingController extends Controller
         return new RatingResource($rating->loadMissing(['commentator:id,username']));
 
     }
+    public function update(Request $request, $id)
+    {
+        $request->validate([]);
+    }
 
 }
